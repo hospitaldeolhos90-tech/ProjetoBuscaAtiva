@@ -765,7 +765,7 @@ with st.sidebar:
 
     # COLOQUE O CÓDIGO NOVO AQUI:
     st.sidebar.markdown("### 📊 <span style='color: white;'>RESUMO DO DIA</span>", unsafe_allow_html=True)
-    st.sidebar.metric(<span style='color: white; "Ajustes Realizados", qtd_ajustes)
+    st.sidebar.metric(<span style='color: white;' "Ajustes Realizados", qtd_ajustes)
     
     st.sidebar.divider()
     
