@@ -764,19 +764,23 @@ with st.sidebar:
     qtd_ajustes = len(st.session_state['lista_pendencias'])
 
     # COLOQUE O CÓDIGO NOVO AQUI:
-    st.sidebar.markdown("### 📊 RESUMO DO DIA")
+    st.sidebar.markdown("### 📊 <span style='color: white;'>RESUMO DO DIA</span>", unsafe_allow_html=True)
     st.sidebar.metric("Ajustes Realizados", qtd_ajustes)
     
     st.sidebar.divider()
     
-    st.sidebar.markdown("#### 💡 Lembretes:")
-    st.sidebar.write("- Conferir DDD antes de enviar.")
-    st.sidebar.write("- Óbitos: Marcar no log.")
-    st.sidebar.write("- Retornos: Usar link do SAC.")
+    # Usando HTML simples para forçar a cor branca nos lembretes
+    st.sidebar.markdown("""
+        <div style='color: white;'>
+            <b>💡 Lembretes:</b><br>
+            • Conferir DDD antes de enviar.<br>
+            • Óbitos: Marcar no log.<br>
+            • Retornos: Usar link do SAC.
+        </div>
+    """, unsafe_allow_html=True)
     
     st.sidebar.divider()
     st.sidebar.caption(f"Sessão iniciada às: {datetime.now().strftime('%H:%M')}")
-    # ---------------------------
 
     st.markdown("---")
     
