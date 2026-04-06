@@ -763,21 +763,23 @@ with st.sidebar:
     
     qtd_ajustes = len(st.session_state['lista_pendencias'])
 
-    # --- ADICIONE O '#' AQUI EM BAIXO ---
+    # COLOQUE O CÓDIGO NOVO AQUI:
+    st.sidebar.markdown("### 📊 RESUMO DO DIA")
+    st.sidebar.metric("Ajustes Realizados", qtd_ajustes)
     
-    #st.markdown(f"""
-    #    <div style='background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);'>
-    #        <p style='margin:0; font-size: 0.9rem;'><span class='led-green'>●</span> SERVIDOR: <b>ESTÁVEL</b></p>
-    #        <p style='margin:0; font-size: 0.9rem;'><span class='led-green'>●</span> CONEXÃO REDE: <b>OK</b></p>
-    #        <p style='margin:0; font-size: 0.9rem;'>AJUSTES LOGADOS: <b>{qtd_ajustes}</b></p>
-    #        <p style='margin-top:10px; font-size: 0.75rem; opacity: 0.7;'>Início: {datetime.now().strftime('%H:%M')}</p>
-    #    </div>
-    #""", unsafe_allow_html=True)
+    st.sidebar.divider()
     
-    # -----------------------------------
+    st.sidebar.markdown("#### 💡 Lembretes:")
+    st.sidebar.write("- Conferir DDD antes de enviar.")
+    st.sidebar.write("- Óbitos: Marcar no log.")
+    st.sidebar.write("- Retornos: Usar link do SAC.")
+    
+    st.sidebar.divider()
+    st.sidebar.caption(f"Sessão iniciada às: {datetime.now().strftime('%H:%M')}")
+    # ---------------------------
 
     st.markdown("---")
-
+    
     if st.button("🆕 REINICIAR APP"):
 
         st.session_state['lista_pendencias'] = []
