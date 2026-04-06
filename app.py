@@ -765,11 +765,14 @@ with st.sidebar:
 
     # COLOQUE O CÓDIGO NOVO AQUI:
     st.sidebar.markdown("### 📊 <span style='color: white;'>RESUMO DO DIA</span>", unsafe_allow_html=True)
-    st.sidebar.metric(<span style='color: white;' "Ajustes Realizados", qtd_ajustes)
+    
+    # Métrica (O número fica branco automático se o título for Markdown)
+    st.sidebar.markdown(f"<h1 style='color: white; margin-bottom:0;'>{qtd_ajustes}</h1>", unsafe_allow_html=True)
+    st.sidebar.markdown("<p style='color: white; margin-top:0;'>Ajustes Realizados</p>", unsafe_allow_html=True)
     
     st.sidebar.divider()
     
-    # Usando HTML simples para forçar a cor branca nos lembretes
+    # Lembretes em Branco
     st.sidebar.markdown("""
         <div style='color: white;'>
             <b>💡 Lembretes:</b><br>
@@ -781,8 +784,6 @@ with st.sidebar:
     
     st.sidebar.divider()
     st.sidebar.caption(f"Sessão iniciada às: {datetime.now().strftime('%H:%M')}")
-
-    st.markdown("---")
     
     if st.button("🆕 REINICIAR APP"):
 
