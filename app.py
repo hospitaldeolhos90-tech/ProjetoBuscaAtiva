@@ -359,11 +359,65 @@ def colorir_status(row):
 
 # --- 3. DESIGN "HYBRID ELITE" ---
 
-# Isso substitui todo aquele HTML que está dando erro
-    st.sidebar.success(f"● SERVIDOR: ESTÁVEL")
-    st.sidebar.info(f"● CONEXÃO REDE: OK")
-    st.sidebar.write(f"**AJUSTES LOGADOS:** {qtd_ajustes}")
-    st.sidebar.caption(f"Início: {datetime.now().strftime('%H:%M')}")
+st.markdown(f"""
+
+    <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+    
+
+    @keyframes fadeInUp {{ from {{ opacity: 0; transform: translateY(20px); }} to {{ opacity: 1; transform: translateY(0); }} }}
+
+    @keyframes auroraBG {{ 0% {{ background-position: 0% 50%; }} 50% {{ background-position: 100% 50%; }} 100% {{ background-position: 0% 50%; }} }}
+
+
+
+    .stApp {{ background: linear-gradient(-45deg, #f0f7f4, #e0efeb, #ffffff, #cde0dc); background-size: 400% 400% !important; animation: auroraBG 15s ease infinite !important; font-family: 'Outfit', sans-serif; }}
+
+    [data-testid="stSidebar"] {{ background-color: #1e3d3a !important; border-right: 2px solid rgba(0, 255, 204, 0.2); }}
+
+    [data-testid="stSidebar"] .stMarkdown p, [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {{ color: #ffffff !important; font-family: 'Outfit', sans-serif; }}
+
+
+
+    .premium-title {{ color: #1e3d3a; font-weight: 600 !important; font-size: 2.2rem; text-align: center; text-transform: uppercase; margin-top: 50px !important; margin-bottom: 40px; display: flex; align-items: center; justify-content: center; gap: 15px; animation: fadeInUp 0.6s ease-out; }}
+
+    @media (max-width: 768px) {{ .premium-title {{ font-size: 1.4rem !important; margin-top: 20px !important; }} .master-card {{ padding: 25px 15px !important; border-radius: 25px !important; }} div.stButton > button {{ height: 60px !important; font-size: 1.1rem !important; }} .stTabs [data-baseweb="tab"] {{ height: 60px !important; }} .stTabs [data-baseweb="tab"] p {{ font-size: 0.8rem !important; }} }}
+
+
+
+    .stTabs [data-baseweb="tab-list"] {{ display: flex !important; width: 100% !important; gap: 8px !important; background-color: transparent !important; padding: 5px; }}
+
+    .stTabs [data-baseweb="tab"] {{ flex-grow: 1 !important; height: 85px !important; background-color: #1e3d3a !important; border-radius: 15px 15px 0 0 !important; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; }}
+
+    .stTabs [data-baseweb="tab"] p {{ font-size: 1.1rem !important; font-weight: 700 !important; color: #FFFFFF !important; }}
+
+    .stTabs [data-baseweb="tab"]:hover {{ transform: translateY(-10px) !important; background-color: #2f6c68 !important; }}
+
+    .stTabs [aria-selected="true"] {{ background-color: #2f6c68 !important; border-bottom: 6px solid #00ffcc !important; }}
+
+
+
+    .master-card {{ background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); border-radius: 40px; padding: 60px 80px; box-shadow: 0 40px 80px rgba(0,0,0,0.08); text-align: center; border: 1px solid rgba(255, 255, 255, 0.4); animation: fadeInUp 1s ease-out; }}
+
+    div.stButton > button, div.stDownloadButton > button {{ background: linear-gradient(135deg, #1e3d3a 0%, #2f6c68 100%) !important; color: white !important; border-radius: 60px !important; height: 60px !important; width: 100% !important; font-size: 1.1rem !important; font-weight: 700 !important; text-transform: uppercase !important; border: none !important; transition: 0.4s all cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; letter-spacing: 1px; }}
+
+    div.stButton > button:hover, div.stDownloadButton > button:hover {{ transform: scale(1.07) translateY(-5px) !important; box-shadow: 0 20px 45px rgba(30, 61, 58, 0.35) !important; }}
+
+
+
+    .response-box {{ background: white; padding: 25px; border-radius: 22px; border-top: 8px solid #1e3d3a; box-shadow: 0 10px 30px rgba(0,0,0,0.04); margin-bottom: 25px; text-align: left; animation: fadeInUp 0.8s ease-out; }}
+
+    .penc-row {{ background: #f8fafc; padding: 15px; border-radius: 12px; margin-bottom: 10px; font-size: 0.9rem; color: #1e3d3a; font-weight: 700; border-left: 5px solid #1e3d3a; border: 1px solid #e2e8f0; }}
+
+    .footer-master {{ text-align: center; color: #1e3d3a; font-weight: 600; letter-spacing: 10px; margin-top: 80px; margin-bottom: 30px; font-size: 1rem; opacity: 0.8; animation: fadeInUp 1.2s ease-out; }}
+
+    .led-green {{ color: #00ffcc; text-shadow: 0 0 10px #00ffcc; }}
+
+    </style>
+
+""", unsafe_allow_html=True)
 
 
 
