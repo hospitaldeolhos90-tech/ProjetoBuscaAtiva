@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Busca Ativa & Confirmação - HOVA</title>
+    <style>
+        :root { --primary: #0078D7; --confirm: #25D366; --busca: #764ba2; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); margin: 0; padding: 40px; color: #333; }
+        h1 { text-align: center; color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        
+        .card { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border-radius: 20px; padding: 25px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.3); animation: float 6s ease-in-out infinite; border: 1px solid rgba(255,255,255,0.3); }
+        .card:nth-child(even) { animation-delay: 1s; }
+        .card:hover { transform: scale(1.03); transition: 0.3s; background: #fff; }
+        
+        .img-box { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 15px; border: 3px solid var(--primary); overflow: hidden; background: #eee; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .name { font-size: 1.4em; font-weight: bold; margin-bottom: 5px; }
+        .slot-tag { display: inline-block; padding: 4px 12px; background: #333; color: #fff; border-radius: 15px; font-size: 0.8em; margin-bottom: 15px; }
+        .whatsapp { font-size: 0.9em; color: #666; margin-bottom: 15px; display: block; }
+        
+        .btn-copy { border: none; padding: 12px; width: 100%; border-radius: 10px; cursor: pointer; font-weight: bold; color: white; transition: 0.2s; }
+        .btn-busca { background: var(--busca); }
+        .btn-confirm { background: var(--confirm); }
+        .btn-copy:active { transform: scale(0.95); }
+        .btn-copy.success { background: #000 !important; }
+    </style>
+</head>
+<body>
+
+<h1>💠 Esquadrão Hova Master Intelligence 💠</h1>
+
+<div class="grid" id="painel"></div>
+
+<script>
+    const agentes = [
+        { nome: "LUMINA ALMEIDA", slot: "SEM SLOT / WEB", zap: "31 9723-6408", tipo: "busca", msg: "Olá, *{{column_2}}*! Tudo bem? 👁️\n\nAqui é a *LUMINA ALMEIDA*, assistente do *Hospital de Olhos Vale do Aço*.\n\nEstava revisando seu histórico e percebi que já faz um tempo desde sua última consulta. A saúde dos seus olhinhos merece atenção regular — está na hora de realizar uma nova avaliação preventiva.\n\n📲 *Para agendar:*\n1. Toque no link azul abaixo\n2. O WhatsApp abre automaticamente\n3. Nossa equipe vai te atender\n\n👇 *Clique aqui para agendar:*\nhttps://wa.me/553138011800\n\n*Aviso:* Este número só envia lembretes. Para agendar, use o link acima.\n\n💡 Já consultou recentemente? Pode desconsiderar esta mensagem.\n\nPodemos te esperar? 🤍\n\n*LUMINA ALMEIDA — Hospital de Olhos Vale do Aço*" },
+        { nome: "PITER SANTOS", slot: "SLOT 11", zap: "31 9528-5492", tipo: "busca", msg: "Olá, *{{column_2}}*! Tudo bem? 👁️\n\nAqui é o *PITER SANTOS*, assistente do *Hospital de Olhos Vale do Aço*.\n\nEstava revisando seu histórico e percebi que já faz um tempo desde sua última consulta. A saúde dos seus olhinhos merece atenção regular — está na hora de realizar uma nova avaliação preventiva.\n\n📲 *Para agendar:*\n1. Toque no link azul abaixo\n2. O WhatsApp abre automaticamente\n3. Nossa equipe vai te atender\n\n👇 *Clique aqui para agendar:*\nhttps://wa.me/553138011800\n\n*Aviso:* Este número só envia lembretes. Para agendar, use o link acima.\n\n💡 Já consultou recentemente? Pode desconsiderar esta mensagem.\n\nPodemos te esperar? 🤍\n\n*PITER SANTOS — Hospital de Olhos Vale do Aço*" },
+        { nome: "CLARA MARTINS", slot: "SLOT 07", zap: "31 9743-4631", tipo: "busca", msg: "Olá, *{{column_2}}*! Tudo bem? 👁️\n\nAqui é a *CLARA MARTINS*, assistente do *Hospital de Olhos Vale do Aço*.\n\nEstava revisando seu histórico e percebi que já faz um tempo desde sua última consulta. A saúde dos seus olhinhos merece atenção regular — está na hora de realizar uma nova avaliação preventiva.\n\n📲 *Para agendar:*\n1. Toque no link azul abaixo\n2. O WhatsApp abre automaticamente\n3. Nossa equipe vai te atender\n\n👇 *Clique aqui para agendar:*\nhttps://wa.me/553138011800\n\n*Aviso:* Este número só envia lembretes. Para agendar, use o link acima.\n\n💡 Já consultou recentemente? Pode desconsiderar esta mensagem.\n\nPodemos te esperar? 🤍\n\n*CLARA MARTINS — Hospital de Olhos Vale do Aço*" },
+        { nome: "PRISMA RAMOS", slot: "SLOT 20", zap: "31 7221-8952", tipo: "busca", msg: "Olá, *{{column_2}}*! Tudo bem? 👁️\n\nAqui é a *PRISMA RAMOS*, assistente do *Hospital de Olhos Vale do Aço*.\n\nEstava revisando seu histórico e percebi que já faz um tempo desde sua última consulta. A saúde dos seus olhinhos merece atenção regular — está na hora de realizar uma nova avaliação preventiva.\n\n📲 *Para agendar:*\n1. Toque no link azul abaixo\n2. O WhatsApp abre automaticamente\n3. Nossa equipe vai te atender\n\n👇 *Clique aqui para agendar:*\nhttps://wa.me/553138011800\n\n*Aviso:* Este número só envia lembretes. Para agendar, use o link acima.\n\n💡 Já consultou recentemente? Pode desconsiderar esta mensagem.\n\nPodemos te esperar? 🤍\n\n*PRISMA RAMOS — Hospital de Olhos Vale do Aço*" },
+        { nome: "ROGER OLIVEIRA", slot: "SLOT 14", zap: "31 9953-2096", tipo: "confirm", msg: "Olá, {{column_4}}! Tudo bem? 👁️\n\nAqui é o *ROGER OLIVEIRA*, seu assistente do Hospital de Olhos Vale do Aço.\n\n📌 *Lembrete automático do seu atendimento:*\n\n📋 *Atendimento:* {{column_6}}\n👨‍⚕️ *Médico(a):* {{column_7}}\n📅 *Data:* {{column_1}}\n⏰ *Chegada:* {{column_2}}\n\n🚨 *PREPARO OBRIGATÓRIO:*\n\n{{column_8}}\n\n📁 *O QUE TRAZER:*\n\n{{column_9}}\n\n⚠️ *CONFIRMAÇÃO:*\n\n✅ *Confirmar:* Responda *SIM* _(Sistema registra automaticamente)_\n\n❌ *Cancelar/Remarcar:* Não responda aqui\nTemos fila de espera. Clique no link:\n👉 https://wa.me/553138011800\n\n🤖 Mensagem automática. Sistema em atualização.\n\n🤍 *ROGER OLIVEIRA — Hospital de Olhos Vale do Aço*" },
+        { nome: "NATALIA VIANA", slot: "SLOT 01", zap: "31 7150-8930", tipo: "catarata", msg: "Olá, *{{column_2}}*! 👁️\n\nAqui é a *NATALIA VIANA*, do Hospital de Olhos Vale do Aço.\n\nVou te enviar um áudio explicativo com informações importantes sobre seu atendimento. Por favor, ouça com atenção. 🎧\n\nQualquer dúvida, estou à disposição. 🤍\n\nCaso queira agendar, entre em contato pelo WhatsApp: https://wa.me/553138011800\n\nObs.: Caso você já esteja se preparando ou já tenha realizado o procedimento, por gentileza, desconsidere esta mensagem." },
+        { nome: "STELLA VEIRA", slot: "SLOT 10", zap: "31 9670-1479", tipo: "confirm", msg: "Olá, {{column_4}}! Tudo bem? 👁️\n\nAqui é a *STELLA VEIRA*, sua assistente do Hospital de Olhos Vale do Aço.\n\n📌 *Lembrete automático do seu atendimento:*\n\n📋 *Atendimento:* {{column_6}}\n👨‍⚕️ *Médico(a):* {{column_7}}\n📅 *Data:* {{column_1}}\n⏰ *Chegada:* {{column_2}}\n\n🚨 *PREPARO OBRIGATÓRIO:*\n\n{{column_8}}\n\n📁 *O QUE TRAZER:*\n\n{{column_9}}\n\n⚠️ *CONFIRMAÇÃO:*\n\n✅ *Confirmar:* Responda *SIM* _(Sistema registra automaticamente)_\n\n❌ *Cancelar/Remarcar:* Não responda aqui\nTemos fila de espera. Clique no link:\n👉 https://wa.me/553138011800\n\n🤖 Mensagem automática. Sistema em atualização.\n\n🤍 *STELLA VEIRA — Hospital de Olhos Vale do Aço*" },
+        { nome: "ESTER TEIXEIRA", slot: "SLOT 16", zap: "31 97202-3913", tipo: "confirm", msg: "Olá, {{column_4}}! Tudo bem? 👁️\n\nAqui é a *ESTER TEIXEIRA*, sua assistente do Hospital de Olhos Vale do Aço.\n\n📌 *Lembrete automático do seu atendimento:*\n\n📋 *Atendimento:* {{column_6}}\n👨‍⚕️ *Médico(a):* {{column_7}}\n📅 *Data:* {{column_1}}\n⏰ *Chegada:* {{column_2}}\n\n🚨 *PREPARO OBRIGATÓRIO:*\n\n{{column_8}}\n\n📁 *O QUE TRAZER:*\n\n{{column_9}}\n\n⚠️ *CONFIRMAÇÃO:*\n\n✅ *Confirmar:* Responda *SIM* _(Sistema registra automaticamente)_\n\n❌ *Cancelar/Remarcar:* Não responda aqui\nTemos fila de espera. Clique no link:\n👉 https://wa.me/553138011800\n\n🤖 Mensagem automática. Sistema em atualização.\n\n🤍 *ESTER TEIXEIRA — Hospital de Olhos Vale do Aço*" },
+        { nome: "AYLA FREITAS", slot: "SLOT 04", zap: "", tipo: "confirm", msg: "Olá, {{column_4}}! Tudo bem? 👁️\n\nAqui é a *AYLA FREITAS*, sua assistente do Hospital de Olhos Vale do Aço.\n\n📌 *Lembrete automático do seu atendimento:*\n\n📋 *Atendimento:* {{column_6}}\n👨‍⚕️ *Médico(a):* {{column_7}}\n📅 *Data:* {{column_1}}\n⏰ *Chegada:* {{column_2}}\n\n🚨 *PREPARO OBRIGATÓRIO:*\n\n{{column_8}}\n\n📁 *O QUE TRAZER:*\n\n{{column_9}}\n\n⚠️ *CONFIRMAÇÃO:*\n\n✅ *Confirmar:* Responda *SIM* _(Sistema registra automaticamente)_\n\n❌ *Cancelar/Remarcar:* Não responda aqui\nTemos fila de espera. Clique no link:\n👉 https://wa.me/553138011800\n\n🤖 Mensagem automática. Sistema em atualização.\n\n🤍 *AYLA FREITAS — Hospital de Olhos Vale do Aço*" },
+        { nome: "OSCAR SIQUEIRA", slot: "SLOT 13", zap: "", tipo: "busca", msg: "Olá, *{{column_2}}*! Tudo bem? 👁️\n\nAqui é o *OSCAR SIQUEIRA*, seu assistente do *Hospital de Olhos Vale do Aço*.\n\nEstava revisando seu histórico e percebi que já faz um tempo desde sua última consulta. A saúde dos seus olhinhos merece atenção regular — está na hora de realizar uma nova avaliação preventiva.\n\n📲 *Para agendar:*\n1. Toque no link azul abaixo\n2. O WhatsApp abre automaticamente\n3. Nossa equipe vai te atender\n\n👇 *Clique aqui para agendar:*\nhttps://wa.me/553138011800\n\n*Aviso:* Este número só envia lembretes. Para agendar, use o link acima.\n\n💡 Já consultou recentemente? Pode desconsiderar esta mensagem.\n\nPodemos te esperar? 🤍\n\n*OSCAR SIQUEIRA — Hospital de Olhos Vale do Aço*" },
+        { nome: "THEIA DIAS", slot: "SLOT 12", zap: "31 9788-9331", tipo: "busca", msg: "Olá, *{{column_2}}*! Tudo bem? 👁️\n\nAqui é a *THEIA DIAS*, sua assistente do *Hospital de Olhos Vale do Aço*.\n\nEstava revisando seu histórico e percebi que já faz um tempo desde sua última consulta. A saúde dos seus olhinhos merece atenção regular — está na hora de realizar uma nova avaliação preventiva.\n\n📲 *Para agendar:*\n1. Toque no link azul abaixo\n2. O WhatsApp abre automaticamente\n3. Nossa equipe vai te atender\n\n👇 *Clique aqui para agendar:*\nhttps://wa.me/553138011800\n\n*Aviso:* Este número só envia lembretes. Para agendar, use o link acima.\n\n💡 Já consultou recentemente? Pode desconsiderar esta mensagem.\n\nPodemos te esperar? 🤍\n\n*THEIA DIAS — Hospital de Olhos Vale do Aço*" }
+    ];
+
+    const painel = document.getElementById('painel');
+
+    agentes.forEach(agente => {
+        const pNome = agente.nome.split(' ')[0].toLowerCase();
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <div class="img-box"><img src="${pNome}.jpg" onerror="this.src='https://via.placeholder.com/100?text=${pNome.toUpperCase()}'"></div>
+            <div class="name">${agente.nome}</div>
+            <div class="slot-tag">${agente.slot}</div>
+            <span class="whatsapp">${agente.zap}</span>
+            <button class="btn-copy ${agente.tipo === 'busca' ? 'btn-busca' : 'btn-confirm'}" 
+                onclick="copiar(this, \`${agente.msg.replace(/`/g, '\\`')}\`)">
+                COPIAR TEXTO ZAP ROCKET
+            </button>
+        `;
+        painel.appendChild(card);
+    });
+
+    function copiar(btn, texto) {
+        navigator.clipboard.writeText(texto).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = "✅ COPIADO!";
+            btn.classList.add('success');
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('success');
+            }, 1500);
+        });
+    }
+</script>
+</body>
+</html>
