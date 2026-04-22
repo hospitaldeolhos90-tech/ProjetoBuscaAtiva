@@ -816,7 +816,7 @@ Dúvidas? Use o link acima.
                     if match_data:
                         data_extraida = match_data.group(1).replace('_', '/').replace('.', '/').replace('-', '/')
                     if f.name.lower().endswith(('.html', '.htm')):
-                        dfs = dfs = pd.read_html(f.read().decode('latin1', errors='ignore'), header=0), header=0)
+                        dfs = pd.read_html(f.read().decode('latin1', errors='ignore'), header=0)
                         df_conf = max(dfs, key=len).astype(str)
                     else:
                         df_conf = pd.read_excel(f, dtype=str)
