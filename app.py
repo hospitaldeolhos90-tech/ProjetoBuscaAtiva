@@ -753,10 +753,10 @@ with tab6:
                 for idx, f in enumerate(f_batch):
                     f.seek(0)
                    if f.name.lower().endswith(('.html', '.htm')):
-                        conteudo = f.read()
-                        if isinstance(conteudo, bytes):
-                            conteudo = conteudo.decode('latin-1', errors='replace')
-                        df = pd.read_html(io.StringIO(conteudo))[0].astype(str)
+                       conteudo = f.read()
+                       if isinstance(conteudo, bytes):
+                           conteudo = conteudo.decode('latin-1', errors='replace')
+                       df = pd.read_html(io.StringIO(conteudo))[0].astype(str)
                     else:
                         df = pd.read_excel(f, dtype=str)
                     for col in df.columns:
