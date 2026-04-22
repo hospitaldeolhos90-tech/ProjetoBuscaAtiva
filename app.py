@@ -752,8 +752,11 @@ with tab6:
             with zipfile.ZipFile(b_zip, "w", zipfile.ZIP_DEFLATED) as zf:
                 for idx, f in enumerate(f_batch):
                     f.seek(0)
-                    if f.name.lower().endswith(('.html', '.htm')):
-                        dfs = dfs = pd.read_html(f.read().decode('latin1', errors='ignore'))[0].astype(str)[0].astype(str)
+                   if f.name.lower().endswith(('.html', '.htm')):
+                        conteudo = f.read()
+                        if isinstance(conteudo, bytes):
+                            conteudo = conteudo.decode('latin-1', errors='replace')
+                        df = pd.read_html(io.StringIO(conteudo))[0].astype(str)
                     else:
                         df = pd.read_excel(f, dtype=str)
                     for col in df.columns:
@@ -816,7 +819,10 @@ Dúvidas? Use o link acima.
                     if match_data:
                         data_extraida = match_data.group(1).replace('_', '/').replace('.', '/').replace('-', '/')
                     if f.name.lower().endswith(('.html', '.htm')):
-                        dfs = pd.read_html(f.read().decode('latin1', errors='ignore'), header=0)
+                        conteudo = f.read()
+                        if isinstance(conteudo, bytes):
+                            conteudo = conteudo.decode('latin-1', errors='replace')
+                        dfs = pd.read_html(io.StringIO(conteudo), header=0)
                         df_conf = max(dfs, key=len).astype(str)
                     else:
                         df_conf = pd.read_excel(f, dtype=str)
